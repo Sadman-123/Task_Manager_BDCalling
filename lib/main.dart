@@ -22,12 +22,12 @@ class Main extends StatelessWidget{
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       theme: GlobalTheme(),
-      initialRoute: hastoken?'/home':'/register',
+      initialRoute: hastoken?'/home':'/login',
       getPages: [
         GetPage(name: '/register', page: () => Register(),transition: Transition.cupertino),
         GetPage(name: '/home', page: () => Home(),transition: Transition.cupertino),
         GetPage(name: '/login', page: () => Login(),transition: Transition.cupertino),
-        GetPage(name: '/verify', page: () => Accoutverify(),)
+        GetPage(name: '/verify', page: () => Accoutverify(),transition: Transition.cupertino)
       ],
     );
   }

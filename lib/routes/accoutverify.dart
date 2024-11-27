@@ -9,6 +9,8 @@ class Accoutverify extends StatelessWidget{
   Widget build(BuildContext context) {
     var mdw=MediaQuery.sizeOf(context).width;
     var mdh=MediaQuery.sizeOf(context).height;
+    final datarecive=Get.arguments;
+    final email = datarecive['email'];
     return Scaffold(
       body: SafeArea(
         child: Container(
@@ -22,7 +24,7 @@ class Accoutverify extends StatelessWidget{
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text("Let's Verify",style: Title_Text(mdw)),
-                    Text("We have Sent a Code to xyz@gmail.com",style: TextStyle(fontSize: mdw*0.041),)
+                    Text("We have Sent a Code to ${email}",style: TextStyle(fontSize: mdw*0.041),)
                   ],
                 ),
               ),
@@ -38,7 +40,7 @@ class Accoutverify extends StatelessWidget{
                   pinAnimationType: PinAnimationType.scale,
                   defaultPinTheme: pin_code_theme(mdw, mdh),
                   onChanged: (pin){
-                    // user.get_otp(pin);
+                    user.get_otp(pin);
                   },
                 ),
               ),
@@ -46,6 +48,7 @@ class Accoutverify extends StatelessWidget{
               GestureDetector(
                 onTap: (){
                   // user.login(mdw);
+                  user.check_otp(mdw, email);
                 },
                 child: Center(
                   child: Container(

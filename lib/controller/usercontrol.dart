@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:http_parser/http_parser.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:taskmanager/routes/accoutverify.dart';
 import '../components/josstoast.dart';
 
 class Usercontrol extends GetxController {
@@ -26,7 +27,11 @@ class Usercontrol extends GetxController {
   RxBool isloginloading = false.obs;
   RxBool isregisterloading = false.obs;
   RxString selectedImagePath = "".obs;
+  RxString recovery_otp="".obs;
   RxList<dynamic> tasks = [].obs;
+  void get_otp(pin){
+    recovery_otp.value=pin;
+  }
   String BaseUrl = "http://139.59.65.225:8052/";
 
   @override
@@ -116,6 +121,7 @@ class Usercontrol extends GetxController {
       var res = await request.send();
       if (res.statusCode == 200) {
         JossToast(msg: "Registration Successfully", mdw: mdw, isbad: true);
+        Get.toNamed('/verify',arguments: {'email':regemail.text});
         isregisterloading.value = false;
         clear_textfields();
       } else if (res.statusCode == 400) {
@@ -211,6 +217,27 @@ class Usercontrol extends GetxController {
       getTasks();
     }
   }
+  Future<void>check_otp(double mdw,String txt)async{
+    try{
+      var dat={
+        'email':txt,
+        'code':recovery_otp.value
+      };
+      var url = Uri.parse("${BaseUrl}user/activate-user");
+      var res=await http.post(url,headers: {'Content-Type':'application/json'},body: jsonEncode(dat));
+      if(res.statusCode==200)
+      {
+        JossToast(msg: "Account Verified Successfully", mdw: mdw, isbad: true);
+        Get.toNamed('/login');
+      }
+      else{
+        JossToast(msg: "Upps! Account not verified", mdw: mdw, isbad: false);
+      }
+    }
+    catch(e){
+      JossToast(msg: "Something Went Wrong", mdw: mdw, isbad: false);
+    }
+  }
   Future<void> Logout(double mdw) async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     await prefs.remove('token');
@@ -233,5 +260,6 @@ class Usercontrol extends GetxController {
     useremail.clear();
     useraddress.clear();
     selectedImagePath.value="";
+    recovery_otp.value="";
   }
 }
