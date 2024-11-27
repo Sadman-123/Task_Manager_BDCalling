@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pinput/pinput.dart';
 Color input_fillcolor=Color(0xFFF0F0F0);
 ThemeData GlobalTheme()
 {
@@ -68,4 +69,17 @@ TextStyle Card_style_3(double mdw)
 TextStyle Add_Task_Title(double mdw)
 {
   return TextStyle(fontSize: mdw*0.075,fontWeight: FontWeight.bold);
+}
+PinTheme pin_code_theme(double mdw,double mdh)
+{
+  return PinTheme(
+    width: mdw*1,
+    height: mdh*0.07,
+    textStyle: TextStyle(fontSize: 20, color: Color.fromRGBO(30, 60, 87, 1), fontWeight: FontWeight.w600),
+    decoration: BoxDecoration(
+      color: Color(0xFFb7efc5),
+      border: Border.all(color: Color.fromRGBO(234, 239, 243, 1)),
+      borderRadius: BorderRadius.circular(20),
+    ),
+  );
 }

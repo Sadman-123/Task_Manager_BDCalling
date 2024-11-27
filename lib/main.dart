@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:taskmanager/routes/accoutverify.dart';
 import 'package:taskmanager/routes/home.dart';
 import 'package:taskmanager/routes/login.dart';
 import 'package:taskmanager/routes/register.dart';
@@ -21,11 +22,13 @@ class Main extends StatelessWidget{
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       theme: GlobalTheme(),
-      initialRoute: hastoken?'/home':'/login',
+      // initialRoute: hastoken?'/home':'/login',
+      initialRoute: '/verify',
       getPages: [
         GetPage(name: '/register', page: () => Register(),transition: Transition.cupertino),
         GetPage(name: '/home', page: () => Home(),transition: Transition.cupertino),
         GetPage(name: '/login', page: () => Login(),transition: Transition.cupertino),
+        GetPage(name: '/verify', page: () => Accoutverify(),)
       ],
     );
   }

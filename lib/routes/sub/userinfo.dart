@@ -80,13 +80,13 @@ class Userinfo extends StatelessWidget
             SizedBox(height: mdh*0.015,),
             Container(
               child: TextFormField(
-                controller: user.userphone,
+                controller: user.useraddress,
                 readOnly: true,
                 cursorColor: Color(0xFF020203),
                 cursorWidth: 2.2,
                 decoration: InputDecoration(
-                    hintText: "Phone",
-                    prefixIcon: Icon(Icons.phone),
+                    hintText: "Address",
+                    prefixIcon: Icon(Icons.map),
                     filled: true,
                     fillColor: input_fillcolor,
                     border: Input_Box_Border()
@@ -95,7 +95,7 @@ class Userinfo extends StatelessWidget
             ),
             SizedBox(height: mdh*0.044,),
             Container(
-                alignment: Alignment.center,//user.userdate.value
+                alignment: Alignment.center,
                 child: Obx(()=>Text("Created ${convertToTimeAgo(user.userdate.value)}",style: TextStyle(fontSize: mdw*0.050,color: Colors.grey),))
             )
           ],

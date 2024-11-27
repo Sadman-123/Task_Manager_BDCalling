@@ -71,10 +71,10 @@ class Register extends StatelessWidget{
                   child: TextFormField(
                     cursorColor: Color(0xFF020203),
                     cursorWidth: 2.2,
-                    controller: user.regphone,
+                    controller: user.regaddress,
                     decoration: InputDecoration(
-                        hintText: "Enter Phone Number",
-                        prefixIcon: Icon(Icons.mail),
+                        hintText: "Enter Address",
+                        prefixIcon: Icon(Icons.map),
                         filled: true,
                         fillColor: input_fillcolor,
                         border: Input_Box_Border()

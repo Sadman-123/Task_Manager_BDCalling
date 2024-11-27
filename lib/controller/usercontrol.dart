@@ -9,7 +9,7 @@ class Usercontrol extends GetxController{
   TextEditingController logpass=TextEditingController();
   TextEditingController regfirstname=TextEditingController();
   TextEditingController reglastname=TextEditingController();
-  TextEditingController regphone=TextEditingController();
+  TextEditingController regaddress=TextEditingController();
   TextEditingController regemail=TextEditingController();
   TextEditingController regpass=TextEditingController();
   TextEditingController tasktitle=TextEditingController();
@@ -17,7 +17,7 @@ class Usercontrol extends GetxController{
   TextEditingController userfirst=TextEditingController();
   TextEditingController userlast=TextEditingController();
   TextEditingController useremail=TextEditingController();
-  TextEditingController userphone=TextEditingController();
+  TextEditingController useraddress=TextEditingController();
   RxString userdate="".obs;
   RxString welcomename="".obs;
   RxBool isloginloading=false.obs;
@@ -53,7 +53,7 @@ class Usercontrol extends GetxController{
           {
             JossToast(msg: "Logging Successful", mdw: mdw, isbad: true);
             Get.toNamed('/home');
-            var loltoken=jsonDecode(res.body)['token'].toString();
+            var loltoken=jsonDecode(res.body)['data']['token'].toString();
             await prefs.setString('token',loltoken );
             print('Token saved');
             getTasks();
@@ -84,7 +84,7 @@ class Usercontrol extends GetxController{
   Future<void>register(double mdw)
   async{
     isregisterloading.value=true;
-    if(regfirstname.text.isEmpty || reglastname.text.isEmpty || regemail.text.isEmpty || regphone.text.isEmpty || regpass.text.isEmpty)
+    if(regfirstname.text.isEmpty || reglastname.text.isEmpty || regemail.text.isEmpty || regaddress.text.isEmpty || regpass.text.isEmpty)
       {
         JossToast(msg: "Fill Every Blanks", mdw: mdw, isbad: false);
         isregisterloading.value=false;
@@ -98,7 +98,7 @@ class Usercontrol extends GetxController{
           "email":regemail.text.trim(),
           "firstName":regfirstname.text.trim(),
           "lastName":reglastname.text.trim(),
-          "mobile":regphone.text.trim(),
+          "address":regaddress.text.trim(),
           "password":regpass.text.trim()
         };
         var url=Uri.parse("${BaseUrl}user/register");
@@ -152,7 +152,7 @@ class Usercontrol extends GetxController{
         welcomename.value=data['data']['firstName']+" "+data['data']['lastName'];
         userlast.text=data['data']['lastName'];
         useremail.text=data['data']['email'];
-        userphone.text=data['data']['mobile'];
+        useraddress.text=data['data']['address'];
         userdate.value=data['data']['createdDate'];
       }
   }
@@ -239,7 +239,7 @@ class Usercontrol extends GetxController{
     regpass.clear();
     regfirstname.clear();
     reglastname.clear();
-    regphone.clear();
+    regaddress.clear();
     tasktitle.clear();
     taskdes.clear();
   }
@@ -252,7 +252,7 @@ class Usercontrol extends GetxController{
     regpass.dispose();
     regfirstname.dispose();
     reglastname.dispose();
-    regphone.dispose();
+    regaddress.dispose();
     tasktitle.dispose();
     taskdes.dispose();
   }
