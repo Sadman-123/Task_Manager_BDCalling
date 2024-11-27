@@ -22,8 +22,7 @@ class Main extends StatelessWidget{
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       theme: GlobalTheme(),
-      // initialRoute: hastoken?'/home':'/login',
-      initialRoute: '/verify',
+      initialRoute: hastoken?'/home':'/register',
       getPages: [
         GetPage(name: '/register', page: () => Register(),transition: Transition.cupertino),
         GetPage(name: '/home', page: () => Home(),transition: Transition.cupertino),
