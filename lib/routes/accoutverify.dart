@@ -47,7 +47,6 @@ class Accoutverify extends StatelessWidget{
               SizedBox(height: mdh*0.030,),
               GestureDetector(
                 onTap: (){
-                  // user.login(mdw);
                   user.check_otp(mdw, email);
                 },
                 child: Center(
