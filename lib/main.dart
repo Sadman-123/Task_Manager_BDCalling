@@ -5,6 +5,7 @@ import 'package:taskmanager/routes/accoutverify.dart';
 import 'package:taskmanager/routes/home.dart';
 import 'package:taskmanager/routes/login.dart';
 import 'package:taskmanager/routes/register.dart';
+import 'package:taskmanager/routes/splash.dart';
 import 'package:taskmanager/style/style.dart';
 import 'controller/usercontrol.dart';
 void main()async
@@ -27,7 +28,8 @@ class Main extends StatelessWidget{
         GetPage(name: '/register', page: () => Register(),transition: Transition.cupertino),
         GetPage(name: '/home', page: () => Home(),transition: Transition.cupertino),
         GetPage(name: '/login', page: () => Login(),transition: Transition.cupertino),
-        GetPage(name: '/verify', page: () => Accoutverify(),transition: Transition.cupertino)
+        GetPage(name: '/verify', page: () => Accoutverify(),transition: Transition.cupertino),
+        GetPage(name: '/splash', page: () => Splash(),transition: Transition.cupertino),
       ],
     );
   }

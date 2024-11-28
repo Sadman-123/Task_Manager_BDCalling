@@ -199,6 +199,7 @@ class Usercontrol extends GetxController {
       if (res.statusCode == 200) {
         JossToast(msg: "Task Added Successfully", mdw: mdw, isbad: true);
         getTasks();
+        getUserInfo();
       } else {
         JossToast(msg: "Failed to Add Task", mdw: mdw, isbad: false);
       }
