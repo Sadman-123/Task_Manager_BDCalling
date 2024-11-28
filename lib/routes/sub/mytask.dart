@@ -19,61 +19,25 @@ class MyTasks extends StatelessWidget {
       }
     }
     return Scaffold(
-      body: SafeArea(
-        child: Container(
-          margin: const EdgeInsets.all(8),
-          child: Column(
-            children: [
-              // Welcome Header
-              Container(
-                padding: const EdgeInsets.all(3.4),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Obx(()=>RichText(
-                      text: TextSpan(
-                        style: Rich_Text_1(mdw),
-                        children: [
-                          const TextSpan(text: "Welcome,"),
-                          const TextSpan(text: " "),
-                          TextSpan(
-                            text: "${user.welcomename.value} 👋",
-                            style: Rich_Text_2(),
-                          ),
-                        ],
-                      ),
-                    ),),
-                    IconButton(
-                      onPressed: () => user.Logout(mdw),
-                      icon: const Icon(Icons.logout),
-                    ),
-                  ],
-                ),
-              ),
-
-              // "My Tasks" Title
-              Container(
-                padding: const EdgeInsets.all(3.4),
-                width: double.infinity,
-                child: Text(
-                  "My Tasks",
-                  style: Home_Title_Txt(mdw),
-                ),
-              ),
-              // Task List
-              Expanded(
-               child: Obx((){
-                 return ListView.builder(
-                   itemCount: user.tasks.length,
-                   itemBuilder: (context, index) {
-                     return Custom_Card(context,mdw, mdh, user.tasks[index],user);
-                   },
-                 );
-               }),
-              ),
-            ],
+      body: CustomScrollView(
+        slivers: [
+          SliverAppBar(
+            title: Text("Welcome"),
+            backgroundColor: Colors.red,
+            expandedHeight: mdh*0.41,
+            flexibleSpace: FlexibleSpaceBar(
+              background: Image.asset("assets/pic/bg.jpg",fit: BoxFit.cover,),
+            ),
           ),
-        ),
+          Obx((){
+            return SliverList(delegate: SliverChildBuilderDelegate(
+              childCount: user.tasks.length,
+              (context, index) {
+                return Custom_Card(context,mdw, mdh, user.tasks[index],user);
+              },
+            ));
+          })
+        ],
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
@@ -155,8 +119,7 @@ class MyTasks extends StatelessWidget {
     );
   }
 }
-Widget Custom_Card(
-    BuildContext context, double mdw, double mdh, dynamic taskData, Usercontrol user) {
+Widget Custom_Card(BuildContext context, double mdw, double mdh, dynamic taskData, Usercontrol user) {
   return Card(
     color: card_color,
     shadowColor: card_shadow_color,
