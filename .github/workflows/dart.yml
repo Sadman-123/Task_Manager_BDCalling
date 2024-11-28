@@ -1,0 +1,62 @@
+name: Flutter Build
+
+on:
+  push:
+    branches:
+      - main
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+      - name: Install Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.24.3'
+      - name: Install dependencies
+        run: flutter pub get
+      - name: Build APK
+        run: flutter build apk --release
+      - name: Upload APK to GitHub Actions Artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: flutter-counter-release
+          path: build/app/outputs/flutter-apk/app-release.apk
+
+      - name: Get latest tag
+        id: get_tag
+        run: |
+          git fetch --tags
+          latest_tag=$(git describe --tags $(git rev-list --tags --max-count=1) 2>/dev/null || echo "")
+          echo "Latest tag: $latest_tag"
+          if [ -z "$latest_tag" ]; then
+            new_tag="1.0.0"
+          else
+            IFS='.' read -r major minor patch <<< "${latest_tag//v/}"
+            minor=$((minor + 1))
+            new_tag="${major}.${minor}.0"
+          fi
+          echo "New tag: $new_tag"
+          echo "::set-output name=new_tag::$new_tag"
+      - name: Push new tag
+        env:
+          PAT_TOKEN: ${{ secrets.PAT_TOKEN }}
+        run: |
+          git config user.name "GitHub Actions Bot"
+          git config user.email "actions@github.com"
+          git tag ${{ steps.get_tag.outputs.new_tag }}
+          git push https://${{ secrets.PAT_TOKEN }}@github.com/Sadman-123/Task_Manager_BDCalling.git --tags
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: ${{ steps.get_tag.outputs.new_tag }}
+          files: build/app/outputs/flutter-apk/app-release.apk
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
