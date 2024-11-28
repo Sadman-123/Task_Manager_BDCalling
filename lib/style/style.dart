@@ -13,7 +13,7 @@ ThemeData GlobalTheme()
 }
 TextStyle Title_Text(double mdw)
 {
-  return TextStyle(fontSize: mdw*0.089,color: Color(0xFF020203),fontWeight: FontWeight.w800);
+  return TextStyle(fontSize: mdw*0.089,color: Color(0xFF020203),fontWeight: FontWeight.w800,fontFamily: "apple");
 }
 OutlineInputBorder Input_Box_Border()
 {
@@ -31,7 +31,7 @@ BoxDecoration sButtonStyle()
 }
 TextStyle sButtonTextStyle(double mdw)
 {
-  return TextStyle(color: Color(0xFFfefffe),fontSize: mdw*0.05,fontWeight: FontWeight.bold,letterSpacing: 0.5);
+  return TextStyle(color: Color(0xFFfefffe),fontSize: mdw*0.05,fontWeight: FontWeight.bold,letterSpacing: 0.5,fontFamily: "apple");
 }
 CircularProgressIndicator Button_Loading()
 {
@@ -41,38 +41,39 @@ TextStyle Rich_Text_1(double mdw)
 {
   return TextStyle(
       fontSize: mdw*0.05,
-      color: Color(0xFF020203)
+      fontFamily: "apple",
+      color: Color(0xFF020203),
   );
 }
 TextStyle Rich_Text_2()
 {
-  return TextStyle(fontWeight: FontWeight.bold);
+  return TextStyle(fontWeight: FontWeight.bold,fontFamily: "apple");
 }
 TextStyle Home_Title_Txt(double mdw)
 {
-  return TextStyle(fontSize: mdw*0.077,fontWeight: FontWeight.bold);
+  return TextStyle(fontSize: mdw*0.077,fontWeight: FontWeight.bold,fontFamily: "apple");
 }
 Color card_color= Color(0xFFfefffe);
 Color card_shadow_color=Color(0xFFfefffe);
 TextStyle Card_style_1(double mdw)
 {
-  return TextStyle(fontSize: mdw*0.065,overflow: TextOverflow.ellipsis,fontWeight: FontWeight.w500);
+  return TextStyle(fontSize: mdw*0.065,overflow: TextOverflow.ellipsis,fontWeight: FontWeight.w500,fontFamily: "apple");
 }
 TextStyle Card_style_2(double mdw)
 {
-  return TextStyle(fontSize: mdw*0.039);
+  return TextStyle(fontSize: mdw*0.039,fontFamily: "apple");
 }
 TextStyle Card_style_total(double mdw)
 {
-  return TextStyle(fontSize: mdw*0.039,color: Colors.white,fontWeight: FontWeight.bold);
+  return TextStyle(fontSize: mdw*0.039,color: Colors.white,fontWeight: FontWeight.bold,fontFamily: "apple");
 }
 TextStyle Card_style_3(double mdw)
 {
-  return TextStyle(color: Color(0xFF747475));
+  return TextStyle(color: Color(0xFF747475),fontFamily: "apple");
 }
 TextStyle Add_Task_Title(double mdw)
 {
-  return TextStyle(fontSize: mdw*0.075,fontWeight: FontWeight.bold);
+  return TextStyle(fontSize: mdw*0.075,fontWeight: FontWeight.bold,fontFamily: "apple");
 }
 PinTheme pin_code_theme(double mdw,double mdh)
 {

@@ -31,7 +31,7 @@ class MyTasks extends StatelessWidget {
                 child: Obx(()=>CircleAvatar(
                   backgroundColor: Colors.greenAccent,
                   radius: 33,
-                  child: Text("${user.welcomename.value}",style: TextStyle(fontSize: mdw*0.057),),
+                  child: Text("${user.welcomename.value}",style: TextStyle(fontSize: mdw*0.057,fontFamily: "apple"),),
                 )),
               ),
             ],
