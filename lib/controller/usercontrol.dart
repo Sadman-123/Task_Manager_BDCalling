@@ -325,8 +325,9 @@ class Usercontrol extends GetxController {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     await prefs.remove('token');
     tasks.clear();
+    welcomename.value = "";
+    isProfileModified.value = false;
     Get.toNamed('/login');
-    JossToast(msg: "Logged Out Successfully", mdw: mdw, isbad: true);
   }
   void clear_textfields() {
     logemail.clear();

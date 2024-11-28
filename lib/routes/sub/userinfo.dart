@@ -19,6 +19,15 @@ class Userinfo extends StatelessWidget
     var mdw=MediaQuery.sizeOf(context).width;
     var mdh=MediaQuery.sizeOf(context).height;
     return Scaffold(
+      appBar: AppBar(
+        automaticallyImplyLeading: false,
+        actions: [
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: IconButton(onPressed: (){user.Logout(mdw);}, icon: Icon(Icons.logout)),
+          )
+        ],
+      ),
     body: SafeArea(
       child: SingleChildScrollView(
         child: Container(
@@ -26,7 +35,6 @@ class Userinfo extends StatelessWidget
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizedBox(height: mdh*0.05,),
               Text("User Info",style: Home_Title_Txt(mdw),),
               SizedBox(height: mdh*0.04,),
               Container(
@@ -135,7 +143,7 @@ class Userinfo extends StatelessWidget
                   alignment: Alignment.center,
                   child: Obx(()=>Text("${user.getProfileCreatedDateText()}",style: TextStyle(fontSize: mdw*0.050,color: Colors.grey),))
               ),
-              SizedBox(height: mdh*0.044,),
+              SizedBox(height: mdh*0.025,),
               GestureDetector(
                 onTap: () {
                   user.updateProfile(mdw);
