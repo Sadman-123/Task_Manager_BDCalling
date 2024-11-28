@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
+import 'package:taskmanager/routes/sub/userinfo.dart';
+import 'package:timeago/timeago.dart' as timeago;
 import '../../controller/usercontrol.dart';
 import '../../style/style.dart';
 class MyTasks extends StatelessWidget {
@@ -9,6 +10,14 @@ class MyTasks extends StatelessWidget {
   Widget build(BuildContext context) {
     final mdw = MediaQuery.of(context).size.width;
     final mdh = MediaQuery.of(context).size.height;
+    String convertToTimeAgo(String dateString) {
+      try {
+        DateTime parsedDate = DateTime.parse(dateString);
+        return timeago.format(parsedDate);
+      } catch (e) {
+        return "Invalid date format";
+      }
+    }
     return Scaffold(
       body: SafeArea(
         child: Container(
@@ -146,7 +155,8 @@ class MyTasks extends StatelessWidget {
     );
   }
 }
-Widget Custom_Card(BuildContext context,double mdw, double mdh, dynamic taskData,Usercontrol user) {
+Widget Custom_Card(
+    BuildContext context, double mdw, double mdh, dynamic taskData, Usercontrol user) {
   return Card(
     color: card_color,
     shadowColor: card_shadow_color,
@@ -162,27 +172,18 @@ Widget Custom_Card(BuildContext context,double mdw, double mdh, dynamic taskData
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  taskData['title']!,
+                  taskData['title'] ?? 'No Title',
                   style: Card_style_1(mdw),
                 ),
                 Text(
-                  taskData['description']!,
+                  taskData['description'] ?? 'No Description',
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
                   style: Card_style_2(mdw),
                 ),
                 Text(
-                  taskData['email']!,
+                  convertToTimeAgo(taskData['createdAt']) ?? 'No date',
                   style: Card_style_3(mdw),
-                ),
-                SizedBox(height: mdh * 0.012),
-                 Badge(
-                  label: Text(taskData['status']!),
-                  backgroundColor: Colors.blueAccent,
-                  padding: EdgeInsets.symmetric(
-                    horizontal: 10,
-                    vertical: 2,
-                  ),
                 ),
               ],
             ),
@@ -194,7 +195,7 @@ Widget Custom_Card(BuildContext context,double mdw, double mdh, dynamic taskData
               children: [
                 IconButton(
                   onPressed: () {
-                    user.DeleteTask(mdw, taskData['_id']!);
+                    user.DeleteTask(mdw, taskData['_id'] ?? '');
                   },
                   icon: const Icon(Icons.delete),
                 ),
@@ -206,4 +207,5 @@ Widget Custom_Card(BuildContext context,double mdw, double mdh, dynamic taskData
     ),
   );
 }
+
 

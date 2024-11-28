@@ -165,12 +165,12 @@ class Usercontrol extends GetxController {
     var url = Uri.parse("${BaseUrl}task/get-all-task");
     var res = await http.get(url, headers: {
       'Content-Type': 'application/json',
-      'token': '${tok}'
+      'Authorization': 'Bearer ${tok!}'
     });
     if (res.statusCode == 200) {
       var x = jsonDecode(res.body);
-      tasks.assignAll(x['data']);
-      print(x);
+      tasks.assignAll(x['data']['myTasks']);
+      print(tasks);
     }
   }
   Future<void> addTask(double mdw) async {
@@ -184,20 +184,19 @@ class Usercontrol extends GetxController {
     var data = {
       "title": tasktitle.text.trim(),
       "description": taskdes.text.trim(),
-      "status": "new"
     };
     try {
       var res = await http.post(
         url,
         headers: {
           'Content-Type': 'application/json',
-          'token': tok!,
+          'Authorization': "Bearer ${tok!}",
         },
         body: jsonEncode(data),
       );
       if (res.statusCode == 200) {
         JossToast(msg: "Task Added Successfully", mdw: mdw, isbad: true);
-        getTasks(); // Refresh tasks
+        getTasks();
       } else {
         JossToast(msg: "Failed to Add Task", mdw: mdw, isbad: false);
       }
