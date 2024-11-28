@@ -211,7 +211,7 @@ class Usercontrol extends GetxController {
     var url = Uri.parse("${BaseUrl}task/delete-task/${idx}");
     var res = await http.delete(url, headers: {
       'Content-Type': 'application/json',
-      'token': '${tok}'
+      'Authorization': 'Bearer ${tok}'
     });
     if (res.statusCode == 200) {
       JossToast(msg: "Deleted Successfully", mdw: mdw, isbad: true);
