@@ -21,6 +21,7 @@ class Usercontrol extends GetxController {
   TextEditingController userfirst = TextEditingController();
   TextEditingController userlast = TextEditingController();
   TextEditingController useremail = TextEditingController();
+  TextEditingController userpass = TextEditingController();
   TextEditingController useraddress = TextEditingController();
   RxString userdate = "".obs;
   RxString welcomename = "".obs;
@@ -145,7 +146,7 @@ class Usercontrol extends GetxController {
     var url = Uri.parse("${BaseUrl}user/my-profile");
     var res = await http.get(url, headers: {
       'Content-Type': 'application/json',
-      'token': '${tok}'
+      'Authorization': 'Bearer ${tok}'
     });
     if (res.statusCode == 200) {
       var data = jsonDecode(res.body);
@@ -153,8 +154,9 @@ class Usercontrol extends GetxController {
       welcomename.value = data['data']['firstName'] + " " + data['data']['lastName'];
       userlast.text = data['data']['lastName'];
       useremail.text = data['data']['email'];
+      userpass.text=data['data']['password'];
       useraddress.text = data['data']['address'];
-      userdate.value = data['data']['createdDate'];
+      userdate.value = data['data']['createdAt'];
     }
   }
   Future<void> getTasks() async {

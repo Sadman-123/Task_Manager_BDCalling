@@ -6,8 +6,7 @@ import '../../controller/usercontrol.dart';
 import '../../style/style.dart';
 String convertToTimeAgo(String dateString) {
   try {
-    DateFormat dateFormat = DateFormat("MM/dd/yyyy, h:mm:ss a");
-    DateTime parsedDate = dateFormat.parse(dateString);
+    DateTime parsedDate = DateTime.parse(dateString);
     return timeago.format(parsedDate);
   } catch (e) {
     return "Invalid date format";
@@ -71,6 +70,22 @@ class Userinfo extends StatelessWidget
                 decoration: InputDecoration(
                     hintText: "Email",
                     prefixIcon: Icon(Icons.mail),
+                    filled: true,
+                    fillColor: input_fillcolor,
+                    border: Input_Box_Border()
+                ),
+              ),
+            ),
+            SizedBox(height: mdh*0.015,),
+            Container(
+              child: TextFormField(
+                controller: user.userpass,
+                readOnly: true,
+                cursorColor: Color(0xFF020203),
+                cursorWidth: 2.2,
+                decoration: InputDecoration(
+                    hintText: "Password",
+                    prefixIcon: Icon(Icons.password),
                     filled: true,
                     fillColor: input_fillcolor,
                     border: Input_Box_Border()
