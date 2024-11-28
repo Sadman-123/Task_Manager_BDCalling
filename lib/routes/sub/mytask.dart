@@ -22,11 +22,26 @@ class MyTasks extends StatelessWidget {
       body: CustomScrollView(
         slivers: [
           SliverAppBar(
-            title: Text("Welcome"),
-            backgroundColor: Colors.red,
+            backgroundColor:  Color(0xFFfefffe),
+            pinned: true,
+            actions: [
+              Padding(
+                padding: const EdgeInsets.all(7.0),
+                child: CircleAvatar(
+                  backgroundColor: Colors.greenAccent,
+                  radius: 33,
+                  child: Text("${user.welcomename.value}",style: TextStyle(fontSize: mdw*0.057),),
+                ),
+              ),
+            ],
             expandedHeight: mdh*0.41,
             flexibleSpace: FlexibleSpaceBar(
-              background: Image.asset("assets/pic/bg.jpg",fit: BoxFit.cover,),
+              centerTitle: true,
+              background: Image.asset("assets/pic/bg.png",fit: BoxFit.cover,),
+              title: Card(
+                color: Color(0xFF378CE7),
+                child: Container(child: Obx(()=>Text("You got ${user.total_tasks} Tasks",style: Card_style_total(mdw),)),padding: EdgeInsets.all(10),),
+              ),
             ),
           ),
           Obx((){

@@ -62,6 +62,10 @@ TextStyle Card_style_2(double mdw)
 {
   return TextStyle(fontSize: mdw*0.039);
 }
+TextStyle Card_style_total(double mdw)
+{
+  return TextStyle(fontSize: mdw*0.039,color: Colors.white,fontWeight: FontWeight.bold);
+}
 TextStyle Card_style_3(double mdw)
 {
   return TextStyle(color: Color(0xFF747475));

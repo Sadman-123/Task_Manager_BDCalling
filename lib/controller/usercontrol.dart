@@ -29,6 +29,7 @@ class Usercontrol extends GetxController {
   RxBool isregisterloading = false.obs;
   RxString selectedImagePath = "".obs;
   RxString recovery_otp="".obs;
+  RxString total_tasks="".obs;
   RxList<dynamic> tasks = [].obs;
   void get_otp(pin){
     recovery_otp.value=pin;
@@ -151,7 +152,7 @@ class Usercontrol extends GetxController {
     if (res.statusCode == 200) {
       var data = jsonDecode(res.body);
       userfirst.text = data['data']['firstName'];
-      welcomename.value = data['data']['firstName'] + " " + data['data']['lastName'];
+      welcomename.value = data['data']['firstName'][0] + "" + data['data']['lastName'][0];
       userlast.text = data['data']['lastName'];
       useremail.text = data['data']['email'];
       userpass.text=data['data']['password'];
@@ -170,6 +171,7 @@ class Usercontrol extends GetxController {
     if (res.statusCode == 200) {
       var x = jsonDecode(res.body);
       tasks.assignAll(x['data']['myTasks']);
+      total_tasks.value=x['data']['count'].toString();
       print(tasks);
     }
   }
@@ -262,5 +264,6 @@ class Usercontrol extends GetxController {
     useraddress.clear();
     selectedImagePath.value="";
     recovery_otp.value="";
+    total_tasks.value="";
   }
 }
