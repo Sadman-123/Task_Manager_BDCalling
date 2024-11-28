@@ -92,6 +92,7 @@ class Userinfo extends StatelessWidget
                   decoration: InputDecoration(
                       hintText: "Email",
                       prefixIcon: Icon(Icons.mail),
+                      suffixIcon: Icon(Icons.check_circle,color: Colors.blueAccent,),
                       filled: true,
                       fillColor: input_fillcolor,
                       border: Input_Box_Border()

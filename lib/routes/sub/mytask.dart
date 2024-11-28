@@ -22,16 +22,17 @@ class MyTasks extends StatelessWidget {
       body: CustomScrollView(
         slivers: [
           SliverAppBar(
+            automaticallyImplyLeading: false,
             backgroundColor:  Color(0xFFfefffe),
             pinned: true,
             actions: [
               Padding(
                 padding: const EdgeInsets.all(7.0),
-                child: CircleAvatar(
+                child: Obx(()=>CircleAvatar(
                   backgroundColor: Colors.greenAccent,
                   radius: 33,
                   child: Text("${user.welcomename.value}",style: TextStyle(fontSize: mdw*0.057),),
-                ),
+                )),
               ),
             ],
             expandedHeight: mdh*0.41,

@@ -2,15 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../controller/usercontrol.dart';
 import '../style/style.dart';
-
 class Register extends StatelessWidget {
   final Usercontrol user = Get.find();
-
   @override
   Widget build(BuildContext context) {
     var mdw = MediaQuery.sizeOf(context).width;
     var mdh = MediaQuery.sizeOf(context).height;
-
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
