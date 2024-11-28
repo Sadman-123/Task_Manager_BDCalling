@@ -31,6 +31,31 @@ class Userinfo extends StatelessWidget
               SizedBox(height: mdh*0.04,),
               Container(
                 child: TextFormField(
+                  readOnly: true,
+                  controller: TextEditingController(
+                    text: user.userpic.text.isEmpty
+                        ? "Select an Image"
+                        : user.userpic.text,
+                  ),
+                  decoration: InputDecoration(
+                    hintText: "Select an Image",
+                    prefixIcon: Icon(Icons.image),
+                    suffixIcon: IconButton(
+                      onPressed: () {
+                        user.pickImage();
+                      },
+                      icon: Icon(Icons.camera_alt),
+                    ),
+                    filled: true,
+                    fillColor: input_fillcolor,
+                    border: Input_Box_Border(),
+                  ),
+                  style: TextStyle(color: Colors.black),
+                ),
+              ),
+              SizedBox(height: mdh*0.015,),
+              Container(
+                child: TextFormField(
                   controller: user.userfirst,
                   cursorColor: Color(0xFF020203),
                   cursorWidth: 2.2,
@@ -104,11 +129,32 @@ class Userinfo extends StatelessWidget
                   ),
                 ),
               ),
-              SizedBox(height: mdh*0.044,),
+              SizedBox(height: mdh*0.024,),
               Container(
                   alignment: Alignment.center,
-                  child: Obx(()=>Text("Created ${convertToTimeAgo(user.userdate.value)}",style: TextStyle(fontSize: mdw*0.050,color: Colors.grey),))
-              )
+                  child: Obx(()=>Text("${user.getProfileCreatedDateText()}",style: TextStyle(fontSize: mdw*0.050,color: Colors.grey),))
+              ),
+              SizedBox(height: mdh*0.044,),
+              GestureDetector(
+                onTap: () {
+                  user.updateProfile(mdw);
+                },
+                child: Center(
+                  child: Container(
+                    decoration: sButtonStyle(),
+                    height: mdh * 0.06,
+                    width: mdw * 0.8,
+                    child: Obx((){
+                      return Center(
+                        child: user.isupdateprofile.value?Button_Loading():Text(
+                          "UPDATE PROFILE",
+                          style: sButtonTextStyle(mdw),
+                        ),
+                      );
+                    })
+                  ),
+                ),
+              ),
             ],
           ),
         ),
