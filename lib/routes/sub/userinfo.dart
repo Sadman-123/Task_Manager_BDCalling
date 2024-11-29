@@ -20,6 +20,7 @@ class Userinfo extends StatelessWidget
     var mdh=MediaQuery.sizeOf(context).height;
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Color(0xFFfefffe),
         automaticallyImplyLeading: false,
         actions: [
           Padding(
@@ -100,7 +101,10 @@ class Userinfo extends StatelessWidget
                   decoration: InputDecoration(
                       hintText: "Email",
                       prefixIcon: Icon(Icons.mail),
-                      suffixIcon: Icon(Icons.check_circle,color: Colors.blueAccent,),
+                      suffixIcon: IconButton(onPressed: (){
+                        final stk=SnackBar(content: Text('Verified'));
+                        ScaffoldMessenger.of(context).showSnackBar(stk);
+                      }, icon: Icon(Icons.check_circle,color: Colors.blueAccent,)),
                       filled: true,
                       fillColor: input_fillcolor,
                       border: Input_Box_Border()

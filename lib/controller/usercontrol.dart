@@ -49,7 +49,7 @@ class Usercontrol extends GetxController {
 
     return isProfileModified.value ? "Updated $formattedDate2" : "Created $formattedDate";
   }
-  String BaseUrl = "http://139.59.65.225:8052/";
+  String BaseUrl = "http://206.189.138.45:8052/";
 
   @override
   void onInit() {
@@ -346,5 +346,23 @@ class Usercontrol extends GetxController {
     selectedImagePath.value="";
     recovery_otp.value="";
     total_tasks.value="";
+  }
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    logemail.dispose();
+    logpass.dispose();
+    regemail.dispose();
+    regpass.dispose();
+    regfirstname.dispose();
+    reglastname.dispose();
+    regaddress.dispose();
+    tasktitle.dispose();
+    taskdes.dispose();
+    userfirst.dispose();
+    userlast.dispose();
+    useremail.dispose();
+    useraddress.dispose();
   }
 }
